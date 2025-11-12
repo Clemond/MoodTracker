@@ -9,7 +9,7 @@ export default function RootStack() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: "#FFF" },
+        contentStyle: { backgroundColor: "#384FA8" },
         animation: "none"
       }}
     >

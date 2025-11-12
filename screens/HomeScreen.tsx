@@ -1,9 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
+import BottomHSPart from "../components/BottomHSPart";
+import TopHSPart from "../components/TopHSPart";
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text>This is a home screen :D !</Text>
+      <TopHSPart />
+      <BottomHSPart />
     </View>
   );
 }
@@ -11,7 +14,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: "space-between"
   }
 });
