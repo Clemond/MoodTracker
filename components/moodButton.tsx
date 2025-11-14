@@ -1,18 +1,7 @@
-import {
-  StyleSheet,
-  Text,
-  Image,
-  ImageSourcePropType,
-  TouchableOpacity
-} from "react-native";
+import { StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+import { IMoodButton } from "../types/IMoodButton";
 
-export default function MoodButton({
-  feeling,
-  icon
-}: {
-  feeling: string;
-  icon: ImageSourcePropType;
-}) {
+export default function MoodButton({ feeling, icon }: IMoodButton) {
   return (
     <TouchableOpacity style={styles.container}>
       <Image style={{ width: 24, height: 24 }} source={icon} />
