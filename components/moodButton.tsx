@@ -1,9 +1,9 @@
 import {
-  View,
   StyleSheet,
   Text,
   Image,
-  ImageSourcePropType
+  ImageSourcePropType,
+  TouchableOpacity
 } from "react-native";
 
 export default function MoodButton({
@@ -14,10 +14,10 @@ export default function MoodButton({
   icon: ImageSourcePropType;
 }) {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
       <Image style={{ width: 24, height: 24 }} source={icon} />
       <Text style={styles.text}>{feeling}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 
