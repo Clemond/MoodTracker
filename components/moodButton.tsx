@@ -1,18 +1,7 @@
-import {
-  StyleSheet,
-  Text,
-  Image,
-  ImageSourcePropType,
-  TouchableOpacity
-} from "react-native";
+import { StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+import { IMoodButton } from "../types/IMoodButton";
 
-export default function MoodButton({
-  feeling,
-  icon
-}: {
-  feeling: string;
-  icon: ImageSourcePropType;
-}) {
+export default function MoodButton({ feeling, icon }: IMoodButton) {
   return (
     <TouchableOpacity style={styles.container}>
       <Image style={{ width: 24, height: 24 }} source={icon} />
@@ -28,13 +17,14 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     shadowOpacity: 0.3,
     shadowOffset: { width: 0, height: 2 },
-    width: 100,
-    height: 40,
+    elevation: 5,
+    paddingVertical: 8,
     borderRadius: 20,
     paddingHorizontal: 10,
     justifyContent: "space-around",
     alignItems: "center",
-    marginTop: 20
+    marginTop: 20,
+    marginHorizontal: 10
   },
   text: {
     color: "#FFFFFF",
