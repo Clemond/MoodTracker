@@ -1,17 +1,8 @@
 import { View, StyleSheet, Text } from "react-native";
 import MoodButton from "./moodButton";
-import { IMoodButton } from "../types/IMoodButton";
+import { listOfMoods } from "../constants/listOfMoods";
 
 export default function TopHSPart() {
-  const listOfMoods: IMoodButton[] = [
-    { feeling: "Happy", icon: require("../assets/happy.png") },
-    { feeling: "Angry", icon: require("../assets/angry.png") },
-    { feeling: "Sad", icon: require("../assets/sad.png") },
-    { feeling: "Anxious", icon: require("../assets/sad.png") },
-    { feeling: "Depressed", icon: require("../assets/sad.png") },
-    { feeling: "Embarrassed", icon: require("../assets/sad.png") }
-  ];
-
   return (
     <View style={styles.topPart}>
       <Text style={styles.topText}>Welcome!</Text>
