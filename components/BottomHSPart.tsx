@@ -1,10 +1,12 @@
 import { View, StyleSheet } from "react-native";
 import MonthPickerHeader from "./MonthPickerHeader";
+import CheckBox from "./grid/CheckBox";
 
 export default function BottomHSPart() {
   return (
     <View style={styles.bottomPart}>
       <MonthPickerHeader />
+      <CheckBox />
     </View>
   );
 }
