@@ -1,12 +1,17 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import CheckBox from "./CheckBox";
 
 export default function CheckBoxGrid() {
   function renderRow() {
     return (
       <View style={styles.CheckBoxRow}>
-        {Array.from({ length: 6 }, (_, i) => (
-          <CheckBox key={i} />
+        {Array.from({ length: 30 }, (_, i) => (
+          <TouchableOpacity
+            key={i}
+            onPress={() => console.log("Pressed day ", i + 1)}
+          >
+            <CheckBox key={i} />
+          </TouchableOpacity>
         ))}
       </View>
     );
@@ -15,11 +20,6 @@ export default function CheckBoxGrid() {
   return (
     <View style={styles.CheckBoxGridContainer}>
       <View style={styles.CheckBoxRow}>{renderRow()}</View>
-      <View style={styles.CheckBoxRow}>{renderRow()}</View>
-      <View style={styles.CheckBoxRow}>{renderRow()}</View>
-      <View style={styles.CheckBoxRow}>{renderRow()}</View>
-      <View style={styles.CheckBoxRow}>{renderRow()}</View>
-      <View style={styles.CheckBoxRow}>{renderRow()}</View>
     </View>
   );
 }
@@ -27,10 +27,14 @@ export default function CheckBoxGrid() {
 const styles = StyleSheet.create({
   CheckBoxGridContainer: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center"
   },
   CheckBoxRow: {
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "95%",
+    flexWrap: "wrap",
+    gap: 2
   }
 });

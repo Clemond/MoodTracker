@@ -1,7 +1,7 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function CheckBox() {
-  return <TouchableOpacity style={styles.checkboxContainer}></TouchableOpacity>;
+  return <View style={styles.checkboxContainer}></View>;
 }
 
 const styles = StyleSheet.create({
