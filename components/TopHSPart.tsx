@@ -8,8 +8,13 @@ export default function TopHSPart() {
       <Text style={styles.topText}>Welcome!</Text>
       <Text style={styles.bottomText}>How are we feeling today?</Text>
       <View style={styles.moodBtnsContainer}>
-        {listOfMoods.map((mood, index) => (
-          <MoodButton key={index} feeling={mood.feeling} icon={mood.icon} />
+        {listOfMoods.map((mood) => (
+          <MoodButton
+            key={mood.id}
+            id={mood.id}
+            feeling={mood.feeling}
+            icon={mood.icon}
+          />
         ))}
       </View>
     </View>

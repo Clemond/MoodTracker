@@ -14,6 +14,10 @@ export default function BottomHSPart() {
 const styles = StyleSheet.create({
   bottomPart: {
     backgroundColor: "#F9F6F1",
+    shadowRadius: 10,
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: -3 },
+    elevation: 5,
     height: "50%",
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40
