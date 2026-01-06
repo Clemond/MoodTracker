@@ -3,7 +3,20 @@ import { Icon } from "react-native-paper";
 
 export default function MonthPickerHeader() {
   const currentDate = new Date();
-  const month = currentDate.toLocaleString("default", { month: "long" });
+  const currentMonthString = currentDate.toLocaleString("default", {
+    month: "long"
+  });
+  const currentMonthInt = parseInt(
+    currentDate.toLocaleString("default", {
+      month: "numeric"
+    })
+  );
+
+  const totalDaysInMonth = new Date(
+    currentDate.getFullYear(),
+    currentMonthInt,
+    0
+  ).getDate();
 
   return (
     <View>
@@ -11,7 +24,7 @@ export default function MonthPickerHeader() {
         <TouchableOpacity>
           <Icon source={"chevron-left"} size={30} />
         </TouchableOpacity>
-        <Text style={styles.monthText}>{month}</Text>
+        <Text style={styles.monthText}>{currentMonthString}</Text>
         <TouchableOpacity>
           <Icon source={"chevron-right"} size={30} />
         </TouchableOpacity>
