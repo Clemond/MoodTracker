@@ -1,8 +1,9 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Icon } from "react-native-paper";
+import { useCurrentDateStore } from "../stores/useCurrentDateStore";
 
 export default function MonthPickerHeader() {
-  const currentDate = new Date();
+  const { currentDate } = useCurrentDateStore();
   const currentMonthString = currentDate.toLocaleString("default", {
     month: "long"
   });
