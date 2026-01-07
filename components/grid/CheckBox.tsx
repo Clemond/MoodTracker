@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function CheckBox() {
   return <View style={styles.checkboxContainer}></View>;
