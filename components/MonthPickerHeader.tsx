@@ -4,49 +4,42 @@ import { useCurrentDateStore } from "../stores/useCurrentDateStore";
 import { useEffect, useState } from "react";
 
 export default function MonthPickerHeader() {
-  const { currentDate } = useCurrentDateStore();
-  const [userChoiceMonth, setUserChoiceMonth] = useState<number>(0);
-  const currentMonthString = new Date(
+  const { currentDate, setUserPickedMonth, userPickedMonth } =
+    useCurrentDateStore();
+
+  const currentMonth = new Date(
     currentDate.getFullYear(),
-    currentDate.getMonth() + userChoiceMonth
+    currentDate.getMonth() + userPickedMonth
   ).toLocaleString("default", {
     month: "long"
   });
 
-  const [displayedMonth, setDisplayedMonth] =
-    useState<string>(currentMonthString);
+  const currentYear = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + userPickedMonth
+  ).getFullYear();
+
+  const [displayedMonth, setDisplayedMonth] = useState<string>(currentMonth);
 
   useEffect(() => {
-    setDisplayedMonth(currentMonthString);
-  }, [userChoiceMonth]);
-
-  // * This code block will go in the grid files later *
-
-  const currentMonthInt =
-    parseInt(
-      currentDate.toLocaleString("default", {
-        month: "numeric"
-      })
-    ) + userChoiceMonth;
-
-  const totalDaysInMonth = new Date(
-    currentDate.getFullYear(),
-    currentMonthInt,
-    0
-  ).getDate();
-  //* End of code block *
+    setDisplayedMonth(currentMonth);
+  }, [userPickedMonth]);
 
   return (
     <View>
       <View style={styles.monthHeader}>
         <TouchableOpacity
-          onPress={() => setUserChoiceMonth(userChoiceMonth - 1)}
+          onPress={() => setUserPickedMonth(userPickedMonth - 1)}
         >
           <Icon source={"chevron-left"} size={30} />
         </TouchableOpacity>
-        <Text style={styles.monthText}>{displayedMonth}</Text>
+        <View style={styles.textWrapper}>
+          <Text style={styles.monthText}>{displayedMonth}</Text>
+          <Text style={styles.yearText}>{currentYear}</Text>
+        </View>
+
         <TouchableOpacity
-          onPress={() => setUserChoiceMonth(userChoiceMonth + 1)}
+          onPress={() => setUserPickedMonth(userPickedMonth + 1)}
         >
           <Icon source={"chevron-right"} size={30} />
         </TouchableOpacity>
@@ -59,10 +52,19 @@ const styles = StyleSheet.create({
   monthHeader: {
     marginTop: 10,
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
+  textWrapper: {
+    flexDirection: "column",
+    alignItems: "center"
   },
   monthText: {
     fontSize: 25,
     fontWeight: "bold"
+  },
+  yearText: {
+    fontSize: 16,
+    color: "gray"
   }
 });
