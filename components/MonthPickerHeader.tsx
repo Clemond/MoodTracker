@@ -4,11 +4,11 @@ import { useCurrentDateStore } from "../stores/useCurrentDateStore";
 import { useEffect, useState } from "react";
 
 export default function MonthPickerHeader() {
-  const { currentDate } = useCurrentDateStore();
-  const [userChoiceMonth, setUserChoiceMonth] = useState<number>(0);
+  const { currentDate, setUserPickedMonth, userPickedMonth } =
+    useCurrentDateStore();
   const currentMonthString = new Date(
     currentDate.getFullYear(),
-    currentDate.getMonth() + userChoiceMonth
+    currentDate.getMonth() + userPickedMonth
   ).toLocaleString("default", {
     month: "long"
   });
@@ -18,35 +18,19 @@ export default function MonthPickerHeader() {
 
   useEffect(() => {
     setDisplayedMonth(currentMonthString);
-  }, [userChoiceMonth]);
-
-  // * This code block will go in the grid files later *
-
-  const currentMonthInt =
-    parseInt(
-      currentDate.toLocaleString("default", {
-        month: "numeric"
-      })
-    ) + userChoiceMonth;
-
-  const totalDaysInMonth = new Date(
-    currentDate.getFullYear(),
-    currentMonthInt,
-    0
-  ).getDate();
-  //* End of code block *
+  }, [userPickedMonth]);
 
   return (
     <View>
       <View style={styles.monthHeader}>
         <TouchableOpacity
-          onPress={() => setUserChoiceMonth(userChoiceMonth - 1)}
+          onPress={() => setUserPickedMonth(userPickedMonth - 1)}
         >
           <Icon source={"chevron-left"} size={30} />
         </TouchableOpacity>
         <Text style={styles.monthText}>{displayedMonth}</Text>
         <TouchableOpacity
-          onPress={() => setUserChoiceMonth(userChoiceMonth + 1)}
+          onPress={() => setUserPickedMonth(userPickedMonth + 1)}
         >
           <Icon source={"chevron-right"} size={30} />
         </TouchableOpacity>
