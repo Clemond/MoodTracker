@@ -7,6 +7,7 @@ export default function CheckBox() {
 const styles = StyleSheet.create({
   checkboxContainer: {
     padding: 20,
+    margin: 2,
     borderWidth: 1,
     width: 50,
     height: 50
