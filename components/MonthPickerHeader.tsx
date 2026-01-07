@@ -6,18 +6,23 @@ import { useEffect, useState } from "react";
 export default function MonthPickerHeader() {
   const { currentDate, setUserPickedMonth, userPickedMonth } =
     useCurrentDateStore();
-  const currentMonthString = new Date(
+
+  const currentMonth = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth() + userPickedMonth
   ).toLocaleString("default", {
     month: "long"
   });
 
-  const [displayedMonth, setDisplayedMonth] =
-    useState<string>(currentMonthString);
+  const currentYear = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + userPickedMonth
+  ).getFullYear();
+
+  const [displayedMonth, setDisplayedMonth] = useState<string>(currentMonth);
 
   useEffect(() => {
-    setDisplayedMonth(currentMonthString);
+    setDisplayedMonth(currentMonth);
   }, [userPickedMonth]);
 
   return (
@@ -28,7 +33,11 @@ export default function MonthPickerHeader() {
         >
           <Icon source={"chevron-left"} size={30} />
         </TouchableOpacity>
-        <Text style={styles.monthText}>{displayedMonth}</Text>
+        <View style={styles.textWrapper}>
+          <Text style={styles.monthText}>{displayedMonth}</Text>
+          <Text style={styles.yearText}>{currentYear}</Text>
+        </View>
+
         <TouchableOpacity
           onPress={() => setUserPickedMonth(userPickedMonth + 1)}
         >
@@ -43,10 +52,19 @@ const styles = StyleSheet.create({
   monthHeader: {
     marginTop: 10,
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
+  textWrapper: {
+    flexDirection: "column",
+    alignItems: "center"
   },
   monthText: {
     fontSize: 25,
     fontWeight: "bold"
+  },
+  yearText: {
+    fontSize: 16,
+    color: "gray"
   }
 });
