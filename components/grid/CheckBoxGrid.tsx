@@ -1,4 +1,4 @@
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import CheckBox from "./CheckBox";
 import { useCurrentDateStore } from "../../stores/useCurrentDateStore";
 
@@ -18,24 +18,22 @@ export default function CheckBoxGrid() {
     0
   ).getDate();
 
-  function renderRow() {
-    return (
-      <View style={styles.CheckBoxRow}>
-        {Array.from({ length: totalDaysInMonth }, (_, i) => (
-          <TouchableOpacity
-            key={i}
-            onPress={() => console.log("Pressed day ", i + 1)}
-          >
-            <CheckBox key={i} />
-          </TouchableOpacity>
-        ))}
-      </View>
-    );
-  }
-
   return (
     <View style={styles.CheckBoxGridContainer}>
-      <View style={styles.CheckBoxRow}>{renderRow()}</View>
+      <FlatList
+        data={Array.from({ length: totalDaysInMonth })}
+        numColumns={7}
+        contentContainerStyle={{
+          justifyContent: "center",
+          height: "100%"
+        }}
+        scrollEnabled={false}
+        renderItem={({ index }) => (
+          <TouchableOpacity onPress={() => console.log(index + 1)}>
+            <CheckBox />
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 }
@@ -43,14 +41,6 @@ export default function CheckBoxGrid() {
 const styles = StyleSheet.create({
   CheckBoxGridContainer: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center"
-  },
-  CheckBoxRow: {
-    flexDirection: "row",
-    justifyContent: "center",
-    width: "95%",
-    flexWrap: "wrap",
-    gap: 2
   }
 });
