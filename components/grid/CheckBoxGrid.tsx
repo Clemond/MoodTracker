@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import CheckBox from "./CheckBox";
 import { useCurrentDateStore } from "../../stores/useCurrentDateStore";
+import { weekDays } from "../../constants/listOfWeekdays";
 
 export default function CheckBoxGrid() {
   const { currentDate, userPickedMonth } = useCurrentDateStore();
@@ -23,8 +24,6 @@ export default function CheckBoxGrid() {
     currentMonthInt,
     0
   ).getDate();
-
-  let weekDays: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
     <View style={styles.CheckBoxGridContainer}>
