@@ -1,6 +1,13 @@
-import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList
+} from "react-native";
 import CheckBox from "./CheckBox";
 import { useCurrentDateStore } from "../../stores/useCurrentDateStore";
+import { weekDays } from "../../constants/listOfWeekdays";
 
 export default function CheckBoxGrid() {
   const { currentDate, userPickedMonth } = useCurrentDateStore();
@@ -30,6 +37,9 @@ export default function CheckBoxGrid() {
         scrollEnabled={false}
         renderItem={({ index }) => (
           <TouchableOpacity onPress={() => console.log(index + 1)}>
+            {index < 7 && (
+              <Text style={styles.weekDayText}>{weekDays[index]}</Text>
+            )}
             <CheckBox />
           </TouchableOpacity>
         )}
@@ -42,5 +52,10 @@ const styles = StyleSheet.create({
   CheckBoxGridContainer: {
     flex: 1,
     alignItems: "center"
+  },
+  weekDayText: {
+    color: "#555",
+    textAlign: "center",
+    fontSize: 12
   }
 });
